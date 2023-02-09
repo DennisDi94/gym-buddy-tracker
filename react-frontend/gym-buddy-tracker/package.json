@@ -13,6 +13,8 @@
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.5",
+    "@tanstack/react-query": "^4.24.4",
+    "@tanstack/react-router": "^0.0.1-beta.80",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

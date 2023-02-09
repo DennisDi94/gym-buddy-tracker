@@ -16,15 +16,15 @@ import {
 } from "@mui/material";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-
-const drawerWidth = 240;
+import Sidebar from "./Sidebar";
 
 const Layout = ({ children }: { children: ReactNode }) => {
+  const [open, setOpen] = useState(false);
   return (
     <div>
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", backgroundColor: "#e1e6e8" }}>
         <CssBaseline />
         <AppBar
           position="fixed"
@@ -37,6 +37,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
+              onClick={() => setOpen((open) => !open)}
             >
               <MenuIcon />
             </IconButton>
@@ -46,43 +47,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
             <Button color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
-        <Drawer
-          variant="permanent"
-          sx={{
-            width: drawerWidth,
-            flexShrink: 0,
-            [`& .MuiDrawer-paper`]: {
-              width: drawerWidth,
-              boxSizing: "border-box",
-            },
-          }}
-        >
-          <Toolbar />
-          <Box sx={{ overflow: "auto" }}>
-            <List>
-              {["Dashboard", "Trainingspläne"].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                  <ListItemButton>
-                    {text === "Trainingspläne" ? (
-                      <div className="mr-2">
-                        <FitnessCenterIcon />
-                      </div>
-                    ) : (
-                      <div className="mr-2">
-                        <DashboardIcon />
-                      </div>
-                    )}
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </Box>
-        </Drawer>
+        <Sidebar open={open} setOpen={setOpen} />
         <Box
           component="main"
           sx={{
-            flexGrow: 1,
+            flexGrow: 3,
             p: 3,
             backgroundColor: "#e1e6e8",
             height: "100vh",

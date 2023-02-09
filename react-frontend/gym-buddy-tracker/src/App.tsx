@@ -1,29 +1,24 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  Grid,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import { useState } from "react";
 import "./App.css";
-import Sidebar from "./Sidebar";
-import BasicTable from "./UIComponents/BasicTable";
-import MenuIcon from "@mui/icons-material/Menu";
 import Layout from "./Layout";
+import { Outlet, RootRoute } from "@tanstack/react-router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-function App() {
-  const [count, setCount] = useState(0);
+const queryClient = new QueryClient();
 
+const App = () => {
   return (
     <>
-      <Layout>
-        <BasicTable></BasicTable>
-      </Layout>
+      <QueryClientProvider client={queryClient}>
+        <Layout>
+          <Outlet />
+        </Layout>
+      </QueryClientProvider>
     </>
   );
-}
+};
+
+export const rootRoute = new RootRoute({
+  component: App,
+});
 
 export default App;

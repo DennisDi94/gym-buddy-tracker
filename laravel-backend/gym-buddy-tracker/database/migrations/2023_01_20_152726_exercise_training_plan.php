@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('exercises_training_plans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('exercise_id')->constrained('exercises');
-            $table->foreignId('training_plan_id')->constrained('training_plans');
+            $table->foreignId('workout_id')->constrained('workouts');
 
             $table->timestamps();
         });

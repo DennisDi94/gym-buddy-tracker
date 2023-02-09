@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Components\ExerciseManagement\ExerciseManagementController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,7 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get(
     '/exercises',
-    function () {
-        return \App\Models\Exercise::all();
-    }
+    [ExerciseManagementController::class, 'list']
 );
